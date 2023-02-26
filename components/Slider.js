@@ -1,0 +1,100 @@
+import { useState } from 'react';
+import styled from 'styled-components';
+
+export function Slider({ images }) {
+
+  const [slide, setSlide] = useState(0);
+  const handleBack = () => {
+    const newSlide = slide <= 0 ? images.length - 1 : slide - 1;
+    setSlide(newSlide);
+  };
+
+  const handleNext = () => {
+    const sum = slide + 1;
+    const newSlide = sum < images.length ? sum : 0;
+    setSlide(newSlide);
+  };
+
+  return (
+    <div>
+      <SliderContainer>
+        
+        <SliderWrapper slide={slide}>
+          {images.map(({ id, image }) => (
+            <Image src={image} key={id} />
+          ))}
+        </SliderWrapper>
+      </SliderContainer>
+
+      <Controls>
+        <StyledButton onClick={handleBack}>
+          <Arrow left></Arrow>
+        </StyledButton>
+
+        <StyledButton onClick={handleNext}>
+          <Arrow right></Arrow>
+        </StyledButton>
+      </Controls>
+    </div>
+  );
+}
+
+const Arrow = styled.div`
+   border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(${(props) => (props.left ? 135 : props.right ? -45 : 0)}deg);
+`;
+const SliderContainer = styled.div`
+  margin: 0 auto 10px;
+  width: 100%;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+`;
+
+const SliderWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-start;
+  transition: all 0.3s ease;
+  transform: translateX(${(props) => props.slide * -100}%);
+  
+
+`;
+
+const Image = styled.img`
+  flex: 0 0 100%;
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+
+`;
+
+const Controls = styled.div`
+  display: flex;
+  gap: 10px;
+  width: fit-content;
+  margin: 0 auto;
+  
+`;
+
+const StyledButton = styled.button`
+  width: 40px;
+  height: 25px;
+  padding: 0;
+  border: none;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  border-radius: 15px;
+}
+:hover {
+  background-color: rgb(27,40,56); /* Green */
+  color: white;
+}
+`;
