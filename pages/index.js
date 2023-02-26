@@ -10,7 +10,7 @@ import { Controls } from '../components/actions/Controls';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import {  initialFilters } from '../utils/constants';
-import { API_URL, KEY_URL } from '../utils/constants'
+import { API_URL, KEY_URL } from '../.env'
 export default function Home({ initial }) {
   const router = useRouter();
   const { query } = router;

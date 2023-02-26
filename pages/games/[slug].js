@@ -4,7 +4,7 @@ import { ReturnBtn } from '../../components/actions/ReturnBtn';
 import { GameInfo } from '../../components/gameComponents/GameInfo';
 import { Slider } from '../../components/Slider';
 import Head from 'next/head';
-import { API_URL, KEY_URL } from '../utils/constants';
+import { API_URL, KEY_URL } from '../../Utils/Constants';
 export default function ({ game, screenshots }) {
   return (
     <>
